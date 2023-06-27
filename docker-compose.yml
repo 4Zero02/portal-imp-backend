@@ -1,0 +1,35 @@
+version: '3.8'
+
+networks:
+  app_net:
+
+services:
+  db:
+    image: mysql:5.7
+    restart: unless-stopped
+    env_file: ./.env
+    environment:
+      - MYSQL_ROOT_PASSWORD=$DB_PASSWORD
+      - MYSQL_DATABASE=portal
+    ports:
+      - $DB_PORT:$DOCKER_PORT
+    volumes:
+      - db:/var/lib/mysql
+    networks:
+      - app_net
+
+  app:
+    build: .
+    depends_on:
+      - db
+    command: >
+      sh -c "while ! nc -z db $DB_PORT; do sleep 1; done; sequelize db:migrate && npm start"
+    networks:
+      - app_net
+    environment:
+      CREATE_SEEDERS: 'true'
+    ports:
+      - '3000:3000'
+
+volumes:
+  db:
