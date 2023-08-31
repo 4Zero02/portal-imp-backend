@@ -40,6 +40,7 @@ async function login(req, res) {
   }
 }
 
+/*
 async function protected(req, res) {
   try {
     res.json({ message: `Bem-vindo de volta, ${req.user.name}!` });
@@ -48,8 +49,8 @@ async function protected(req, res) {
     res.status(500).json({ error: 'Erro interno do servidor, contate o suporte' });
   }
 }
-
+*/
 module.exports = {
   login,
-  protected,
+  //protected,
 };

@@ -22,6 +22,7 @@ async function authMiddleware(req, res, next) {
     }
 
     req.user = user;
+    // alterar o valor de decoded -> valor fixo
     req.token = decoded;
     next();
   }  catch (error) {

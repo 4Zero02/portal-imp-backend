@@ -31,6 +31,18 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date(),
       },
+      {
+        name: 'Ademir da Silva',
+        cpf: '62277318620',
+        birthdate: '1998-08-26', // Formato americano yyyy/mm/dd
+        registration: '20170300001',
+        contact: '(68) 98989-6969',
+        course: 'Sistema de Informacao',
+        university: 'UFAC',
+        password: bcrypt.hashSync('62277318620', 10), // criptografa a senha
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
     ]);
   },
 
